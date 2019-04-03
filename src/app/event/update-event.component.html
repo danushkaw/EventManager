@@ -1,0 +1,39 @@
+<div class="formContainer">
+<form #eventupdateForm="ngForm" (ngSubmit)="updateEvent(eventupdateForm)" autocomplete="off">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Update Event</h3>
+      </div>
+      <div class="panel-body">
+        <input type="hidden" name="eventCode" [(ngModel)]="event.code">
+        <div class="form-group" [class.has-error]="ename.invalid && ename.touched" [class.has-success]="ename.valid">
+          <label for="eventName" class="control-label">Event Name</label>
+          <input required id="eventName" name="eventName" #ename="ngModel" type="text" [(ngModel)]="event.EventName" class="form-control">
+          <span class="help-block" *ngIf="ename.invalid && ename.touched">Event name is required</span>
+        </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group" [class.has-error]="edate.invalid && edate.touched" [class.has-success]="edate.valid">
+            <label for="eventDateTime" class="control-label">Date/Time</label>
+            <input id="eventDate" #edate="ngModel" required name="eventDate" bsDatepicker [bsConfig]="datePickerConfig"
+              [(ngModel)]="event.EventDate" type="text" class="form-control">
+              <span class="help-block" *ngIf="edate.invalid && edate.touched">Event Date is required</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <timepicker id="eventTime"  name="eventTime" [(ngModel)]="event.EventTime"></timepicker>
+        </div>
+      </div>
+          <app-searchlocation [Location]="getEventLocation()" (passEventLocation)="getLocation($event)"></app-searchlocation>
+      </div>
+      <div class="panel-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="ename.invalid || edate.invalid">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
+  <!-- eventForm is the template reference variable which use to obtain services provided by Angular form -->
+  {{eventupdateForm.value | json}}
+  
+  
+  

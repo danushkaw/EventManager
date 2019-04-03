@@ -1,0 +1,41 @@
+<div class="formContainer">
+<table id="tblEventList" class="table table-hover">
+  <thead class="thead-light">
+      <tr class="tableHeader">
+          <td scope="col">Event ID</td>
+          <td scope="col">Event</td>
+          <td scope="col">Date</td>
+          <td scope="col">Time</td>
+          <td scope="col">City</td>
+          <td scope="col">Temp</td>
+          <td></td>
+          <td></td>
+      </tr>
+  </thead>
+  <tbody>       
+      <ng-container *ngFor="let event of events; trackBy:trackBycode; let i = index">
+         <tr style="z-index: -1">
+             <td class="eid" scope="row">{{event.code}}</td>
+             <td scope="row">{{event.EventName}}</td>
+             <td scope="row">{{event.EventDate | date}}</td>
+             <td scope="row">{{event.EventTime | date:'shortTime'}}</td>
+             <td scope="row">{{event.City}}</td>
+             <td scope="row">{{event.CityTemperature.toFixed(0)}}&#176;</td>
+             <td scope="row">
+                <button name="btnedit" value="{{event.code}}" type="button" class="btn btn-primary btn-xs"> Edit
+               <span class="glyphicon glyphicon-edit"></span>
+               </button>
+            </td>
+             <td scope="row">
+                <button name="btndel" type="button" class="btn btn-warning btn-xs" value="{{event.code}}"> Delete  
+               <span class="glyphicon glyphicon-trash"></span>
+               </button>
+              </td>
+         </tr>
+      </ng-container>
+      <tr *ngIf="events && events.length==0 ">
+        <td colspan="5">No Events To Display</td>
+    </tr>
+  </tbody>
+</table>
+</div>

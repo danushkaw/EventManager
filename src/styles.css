@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+.formContainer{
+    margin-top: 20px;
+}
+
+.tableHeader{
+    background-color: #337ab7;
+    color: white;
+}
